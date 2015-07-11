@@ -1,0 +1,51 @@
+8A. Train and Peter
+========
+
+##题目
+
+- time limit per test1 second
+- memory limit per test64 megabytes
+- inputstandard input
+- outputstandard output
+
+Peter likes to travel by train. He likes it so much that on the train he falls asleep.
+
+Once in summer Peter was going by train from city A to city B, and as usual, was sleeping. Then he woke up, started to look through the window and noticed that every railway station has a flag of a particular colour.
+
+The boy started to memorize the order of the flags' colours that he had seen. But soon he fell asleep again. Unfortunately, he didn't sleep long, he woke up and went on memorizing the colours. Then he fell asleep again, and that time he slept till the end of the journey.
+
+At the station he told his parents about what he was doing, and wrote two sequences of the colours that he had seen before and after his sleep, respectively.
+
+Peter's parents know that their son likes to fantasize. They give you the list of the flags' colours at the stations that the train passes sequentially on the way from A to B, and ask you to find out if Peter could see those sequences on the way from A to B, or from B to A. Remember, please, that Peter had two periods of wakefulness.
+
+Peter's parents put lowercase Latin letters for colours. The same letter stands for the same colour, different letters — for different colours.
+
+***Input***
+The input data contains three lines. The first line contains a non-empty string, whose length does not exceed 105, the string consists of lowercase Latin letters — the flags' colours at the stations on the way from A to B. On the way from B to A the train passes the same stations, but in reverse order.
+
+The second line contains the sequence, written by Peter during the first period of wakefulness. The third line contains the sequence, written during the second period of wakefulness. Both sequences are non-empty, consist of lowercase Latin letters, and the length of each does not exceed 100 letters. Each of the sequences is written in chronological order.
+
+***Output***
+Output one of the four words without inverted commas:
+
+«forward» — if Peter could see such sequences only on the way from A to B;
+«backward» — if Peter could see such sequences on the way from B to A;
+«both» — if Peter could see such sequences both on the way from A to B, and on the way from B to A;
+«fantasy» — if Peter could not see such sequences.
+
+##解题思路
+
+- 模拟题目，大意是在一个给定字符串，在这个字符串和逆向的字符串中查找是否有两个特定顺序的子串，即a子串和b子串是否在给定字符串中存在，并且a在b之前；
+- 解决的办法很简单，在Java中，利用String.indexOf(Str)查找第一个子串的位置，然后在剩下的子串中查找第二个子串的位置；
+- 我的错误是，在查找到第一个子串后，剩余的子串起始位置我是总是定义为查找到的第一个子串的位置加1，导致了两次都没有AC，也是愚蠢呀……
+
+
+
+```java
+//正确写法
+String subStr = flags.substring(flags.indexOf(first)+first.length());
+
+//错误写法
+String subStr = flags.substring(flags.indexOf(first)+1)；
+```
+
